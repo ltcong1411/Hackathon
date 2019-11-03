@@ -15,7 +15,7 @@ class Listing extends Component {
   }
 
   componentDidMount() {
-    fetch('https://dev-racer-252811.appspot.com/ads/get-all')
+    fetch('http://localhost:8080/ads/get-all')
       .then(res => res.json())
       .then((data) => {
         this.setState({ listitems: data })
@@ -40,8 +40,8 @@ class Listing extends Component {
               <Media>
                 <div className="listing__image">
                   <Media left href="#">
-                    {listitem.images[0] != undefined &&
-                      <img className="image" alt="abc" src={listitem.images[0]} />
+                    {listitem.images[0] != undefined ?
+                      <img className="image" alt="abc" src={listitem.images[0]} /> : <img className="image" alt="abc" src={"http://www.anphatpc.com.vn/template/2019/images/noimage.png"} />
                     }
                     <PlayMusic styles={"play__button"} url={listitem.voice_description_url} />
                   </Media>
@@ -53,7 +53,7 @@ class Listing extends Component {
                     </Media>
                     {listitem.description}
                     <br /><br />
-                    <h5 color="red">2.990.000 đ</h5>
+                    <h5 color="red">{listitem.price}</h5>
                   </Media>
                 </div>
               </Media>
